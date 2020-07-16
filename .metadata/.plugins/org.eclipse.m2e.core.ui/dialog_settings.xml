@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\CM Lokeshwara Reddy\Documents\Hema\workspaces\functionalInterfaceEx"/>
 			<item value="C:\Users\CM Lokeshwara Reddy\Documents\Hema\crudrest"/>
 		</list>
 		<list key="projectNameTemplate">

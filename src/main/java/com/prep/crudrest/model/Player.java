@@ -47,5 +47,10 @@ public class Player {
 		this.name = name;
 		this.department = department;
 	}
+	@Override
+	public String toString() {
+		return "Player [playerId=" + playerId + ", name=" + name + ", department=" + department + ", sports=" + sports
+				+ "]";
+	}
 
 }

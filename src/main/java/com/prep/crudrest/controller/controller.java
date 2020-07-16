@@ -1,11 +1,9 @@
 package com.prep.crudrest.controller;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.prep.crudrest.model.Player;
+import com.prep.crudrest.model.Sports;
 import com.prep.crudrest.service.crudService;
 
 @RestController
@@ -86,11 +84,20 @@ public ResponseEntity<Void> deleteByName(@RequestParam(value="name")String  name
 		  return ResponseEntity.notFound().build();
 		 }
 }
-
-	@RequestMapping(value="/players",method=RequestMethod.PUT
-			)
+	@RequestMapping(value="/players",method=RequestMethod.PUT)
 	public ResponseEntity<Player> updateArticle(@RequestBody Player Plyr) {
 		service.update(Plyr);
 		return new ResponseEntity<Player>(Plyr, HttpStatus.OK);
+	}
+	@RequestMapping(value="/players/{id}/posts",method=RequestMethod.POST)
+	public ResponseEntity<Object> savesport(@PathVariable Integer id,@RequestBody Sports sport) {
+		Optional<Player> list=service.findById(id);
+	try {
+		Player ply=list.get();
+		sport.setPlayer(ply);
+		return ResponseEntity.noContent().build();
+	 } catch (Exception e) {
+	  return ResponseEntity.notFound().build();
+	 }
 	}
 }

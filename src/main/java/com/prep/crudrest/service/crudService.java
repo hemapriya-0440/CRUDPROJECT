@@ -2,18 +2,23 @@ package com.prep.crudrest.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.prep.crudrest.model.Player;
+import com.prep.crudrest.model.Sports;
+import com.prep.crudrest.repository.SportRepository;
 import com.prep.crudrest.repository.playerRepo;
 
 @Service
 public class crudService {
 @Autowired 
 private playerRepo repository;
+@Autowired 
+private SportRepository repository2 ;
 public Player createsplayer(Player player) {
 	repository.save(player);
 	return player;
@@ -74,5 +79,10 @@ public void deleteByName(String name) {
 public void update(Player plyr) {
 
        repository.save(plyr);
+}
+public Optional<Player> findById(int id){
+Optional<Player> list	=repository.findById(id);
+	return list;
+	
 }
 }
